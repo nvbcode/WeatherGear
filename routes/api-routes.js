@@ -20,7 +20,6 @@ module.exports = function(app) {
         } else {
           weatherData.weatherStat = "cold";
         }
-
         console.log("WeatherDAta", weatherData);
         weatherData.temp = resp.data.main.temp;
         weatherData.rain = resp.data.rain ? resp.data.rain : "";

@@ -50,19 +50,22 @@ class App extends React.Component {
         temp: res.data.temp,
         rain: res.data.rain,
         weatherStat: res.data.weatherStat
-      });
+      }, this.getItems);
     });
 
-    this.getItems();
   };
 
   getItems = e => {
+    console.log('reaches get items')
+    console.log("state", this.state)
     let param = "";
-    if (this.state.rain === "") {
+    if (this.state.rain !== "") {
       param = this.state.rain;
     } else {
       param = this.state.weatherStat;
     }
+
+    console.log('param', param);
     $.get(`/api/items/${param}`).then(res => {
       console.log(res);
       // this.setState({
