@@ -32,7 +32,7 @@ module.exports = function(app) {
 
   app.get("/api/items/:id", function(req, res) {
     Product.find({ temp: req.params.id }).then(function(data) {
-      console.log("data from database");
+      console.log("data from database", data);
       res.json(data);
     });
   });

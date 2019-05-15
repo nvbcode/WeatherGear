@@ -68,9 +68,9 @@ class App extends React.Component {
     console.log('param', param);
     $.get(`/api/items/${param}`).then(res => {
       console.log(res);
-      // this.setState({
-      //   items:res
-      // })
+      this.setState({
+        items:res.data
+      })
     });
   };
 
@@ -102,7 +102,7 @@ class App extends React.Component {
         <br />
         <Grid containerjustify="center" spacing={16}>
           <Grid item>
-            <Item />
+            { (this.state.items.length>0) ? <Item items={this.state.items}/> : ''}  
           </Grid>
         </Grid>
       </div>
