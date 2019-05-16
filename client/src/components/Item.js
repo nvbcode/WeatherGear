@@ -18,7 +18,7 @@ const styles = theme => ({
     overflowX: "auto"
   },
   table: {
-    minWidth: 700
+    minWidth: 300
   }
 });
 
@@ -35,7 +35,7 @@ function SimpleTable(props) {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table}>
+      <Table className={classes.table} padding="checkbox">
         <TableHead>
           <TableRow>
             {props.items.length !== 0
