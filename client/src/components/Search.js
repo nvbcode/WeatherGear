@@ -32,7 +32,7 @@ class SimpleCard extends React.Component {
     return (
       <Card id="searchBar">
         <CardContent>
-          <Typography color="Default" gutterBottom>
+          <Typography color="default" gutterBottom>
             Search City:
           </Typography>
           <Typography variant="h5" component="h2" />

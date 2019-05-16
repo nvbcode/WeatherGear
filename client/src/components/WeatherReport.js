@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 
 const styles = {
   card: {
@@ -30,11 +27,11 @@ function SimpleCard(props) {
   return (
     <Card id='searchBar'>
       <CardContent>
-        <Typography color="Default">
+        <Typography color="default">
           Weather is:
         </Typography>
-        <Typography variant="h6" color="secondary" component="h2">
-        { (props.temp) ? `${props.temp} F` : "API Weather call goes in here"}
+        <Typography variant="h6" color="primary" component="h6">
+        { (props.temp) ? `${props.temp} F` : "..."}
         </Typography>
       </CardContent>
     </Card>

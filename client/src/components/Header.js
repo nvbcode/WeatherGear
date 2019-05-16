@@ -4,10 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-// import Button from '@material-ui/core/Button';
 import {Button} from 'reactstrap';
 import IconButton from '@material-ui/core/IconButton';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Modal from './Modal_2';
 
 const styles = {
@@ -38,7 +36,6 @@ componentDidMount(){
 }
 
 modalToggle=(e)=> {
-// e.preventDefault();
 this.setState({
   visibleModal: this.state.visibleModal ? false : true
 })
