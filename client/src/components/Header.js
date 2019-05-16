@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {Button} from 'reactstrap';
 import IconButton from '@material-ui/core/IconButton';
-import Modal from './Modal2';
+import Modal from '../components/Modal2';
 
 const styles = {
   root: {
