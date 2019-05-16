@@ -7,6 +7,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import IconButton from '@material-ui/core/IconButton';
+
 
 const styles = theme => ({
   root: {
@@ -19,10 +22,15 @@ const styles = theme => ({
   }
 });
 
-const rows = ["Product Name", "Production Description", "Price", "Climate"];
+const rows = [
+  "Product Name",
+  "Production Description",
+  "Price",
+  "Climate",
+  "Add to Cart"
+];
 
 function SimpleTable(props) {
-  console.log(props.items)
   const { classes } = props;
 
   return (
@@ -30,25 +38,40 @@ function SimpleTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            { (props.items.length !== 0) ? rows.map((row, i) => { return <TableCell align="right" key={i}>{row}</TableCell>})
-              : "" }  
+            {props.items.length !== 0
+              ? rows.map((row, i) => {
+                  return (
+                    <TableCell align="right" key={i}>
+                      {row}
+                    </TableCell>
+                  );
+                })
+              : ""}
           </TableRow>
         </TableHead>
         <TableBody>
           {props.items.map(row => (
             <TableRow key={row._id}>
-              <TableCell align='right' component="th" scope="row">
+              <TableCell align="right" component="th" scope="row">
                 {row.name}
               </TableCell>
               <TableCell align="right">{row.description}</TableCell>
               <TableCell align="right">{row.price}</TableCell>
               <TableCell align="right">{row.temp}</TableCell>
+              <TableCell align='right'><IconButton
+                color="primary"
+                className={classes.button}
+                name={row._id}
+                aria-label="Add to shopping cart"
+                onClick={e=>props.addToCart(e,row._id)}>
+                <AddShoppingCartIcon name={row._id} />
+              </IconButton></TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </Paper> 
-  )
+    </Paper>
+  );
 }
 
 SimpleTable.propTypes = {

@@ -36,7 +36,8 @@ class App extends React.Component {
     temp: "",
     rain: "",
     weatherStat: "",
-    items: []
+    items: [],
+    cart: []
   };
 
   getWeather = e => {
@@ -46,18 +47,20 @@ class App extends React.Component {
       search: this.state.search
     }).then(res => {
       console.log(res.data);
-      this.setState({
-        temp: res.data.temp,
-        rain: res.data.rain,
-        weatherStat: res.data.weatherStat
-      }, this.getItems);
+      this.setState(
+        {
+          temp: res.data.temp,
+          rain: res.data.rain,
+          weatherStat: res.data.weatherStat
+        },
+        this.getItems
+      );
     });
-
   };
 
-  getItems = e => {
-    console.log('reaches get items')
-    console.log("state", this.state)
+  getItems = () => {
+    // console.log("reaches get items");
+    // console.log("state", this.state);
     let param = "";
     if (this.state.rain !== "") {
       param = this.state.rain;
@@ -65,12 +68,12 @@ class App extends React.Component {
       param = this.state.weatherStat;
     }
 
-    console.log('param', param);
+    console.log("param", param);
     $.get(`/api/items/${param}`).then(res => {
       console.log(res);
       this.setState({
-        items:res.data
-      })
+        items: res.data
+      });
     });
   };
 
@@ -81,13 +84,36 @@ class App extends React.Component {
     });
   };
 
+ addToCart = (e,name) => {
+    e.preventDefault();
+    // setting up cart
+    let index;
+    let cartItem = this.state.items.find((item, i) =>
+    { 
+      if (item._id === name) {
+        index = i;
+        return item
+      }
+    });
+
+    let itemsArr = [...this.state.items];
+    itemsArr.splice(index, 1);
+    // console.log('this current state', this.state.items);
+    // console.log('new items array', itemsArr);
+
+    this.setState({
+      cart: [...this.state.cart, cartItem],
+      items: itemsArr
+    }, function(){ console.log('CART IN APP', this.state.cart)});
+  };
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Header />
+        <Header cart={this.state.cart} />
         <br />
-        <Grid container sm justify="center" spacing={16}>
+        <Grid container justify="center" spacing={16}>
           <Grid item>
             <Search
               search={this.state.search}
@@ -100,9 +126,13 @@ class App extends React.Component {
           </Grid>
         </Grid>
         <br />
-        <Grid containerjustify="center" spacing={16}>
+        <Grid container justify="center" spacing={16}>
           <Grid item>
-            { (this.state.items.length>0) ? <Item items={this.state.items}/> : ''}  
+            {this.state.items.length > 0 ? (
+              <Item items={this.state.items} addToCart={this.addToCart} />
+            ) : (
+              ""
+            )}
           </Grid>
         </Grid>
       </div>
