@@ -1,4 +1,4 @@
-use weather_gear;
+// use weather_gear;
 
 db.products.insert({
     name: "Water Bottle",
