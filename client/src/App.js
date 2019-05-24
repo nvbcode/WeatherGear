@@ -110,7 +110,7 @@ class App extends React.Component {
             />
           </Grid>
           <Grid item xs={6} sm={3}>
-            <WeatherReport temp={this.state.temp} />
+            <WeatherReport temp={this.state.temp} rain={this.state.rain}/>
           </Grid>
         </Grid>
         <br />

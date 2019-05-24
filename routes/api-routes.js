@@ -41,7 +41,7 @@ module.exports = function(app) {
           weatherData.weatherStat = "cold";
         }
         weatherData.temp = resp.data.main.temp;
-        weatherData.rain = resp.data.rain ? resp.data.rain : "";
+        weatherData.rain = resp.data.rain ? 'rain' : "";
         res.json(weatherData);
       })
       .catch(err => {
